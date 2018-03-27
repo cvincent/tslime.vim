@@ -68,7 +68,7 @@ endfunction
 function! s:TmuxWindows()
   if exists("g:tslime_always_current_window") && g:tslime_always_current_window
     let windows = <SID>ActiveTarget()[1:1]
-  elseif exists("g:tslime_window_name") && g:tslime_window_name
+  elseif exists("g:tslime_window_name")
     let windows = g:tslime_window_name
   else
     let windows = split(system('tmux list-windows -F "#{window_index}" -t ' . g:tslime['session']), '\n')
@@ -77,7 +77,7 @@ function! s:TmuxWindows()
 endfunction
 
 function! s:TmuxPanes()
-  if exists("g:tslime_pane_name") && g:tslime_pane_name
+  if exists("g:tslime_pane_name")
     let all_panes = g:tslime_pane_name
   else
     let all_panes = split(system('tmux list-panes -t "' . g:tslime['session'] . '":' . g:tslime['window'] . " -F '#{pane_index}'"), '\n')
